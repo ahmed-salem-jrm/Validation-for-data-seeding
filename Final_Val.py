@@ -6,7 +6,7 @@ def create_connection():
             host="localhost",       # Server address
             dbname="2-16MD",        # Database name
             user="postgres",        # Username
-            password="Pa$$w0rdahmed1996"  # Password
+            password="password"  # Password
         )
         cursor = connection.cursor()
         return connection, cursor
