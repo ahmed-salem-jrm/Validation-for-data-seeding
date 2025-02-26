@@ -6,7 +6,7 @@ def create_connection():
             host="localhost",       # Server address
             dbname="2-16MD",        # Database name
             user="postgres",        # Username
-            password="password"  # Password
+            password="Pa$$w0rdahmed1996"  # Password
         )
         cursor = connection.cursor()
         return connection, cursor
@@ -54,11 +54,11 @@ def col_map():
                 
             ],
             "Users": [
-                {"DataFrameColumn": "UserName", "DatabaseColumn": "UserName", "Table": "Users" , "label":1},
-                {"DataFrameColumn": "First Name", "DatabaseColumn": "FirstName", "Table": "Users" , "label":1},
-                {"DataFrameColumn": "Last Name", "DatabaseColumn": "LastName", "Table": "Users" , "label":1},
+                {"DataFrameColumn": "UserName", "DatabaseColumn": "UserName", "Table": "Users" , "label":0},
+                {"DataFrameColumn": "First Name", "DatabaseColumn": "FirstName", "Table": "Users" , "label":0},
+                {"DataFrameColumn": "Last Name", "DatabaseColumn": "LastName", "Table": "Users" , "label":0},
                 {"DataFrameColumn": "Default Role", "DatabaseColumn": "Description", "Table": "SalesmanTypes" , "label":1},
-                {"DataFrameColumn": "Reset Password", "DatabaseColumn": "Password", "Table": "Users" , "label":1},
+                {"DataFrameColumn": "Reset Password", "DatabaseColumn": "Password", "Table": "Users" , "label":0},
                 {"DataFrameColumn": "Sales Man Type", "DatabaseColumn": "Name", "Table": "SalesmanTypes" , "label":1},
         
             ],
@@ -311,6 +311,6 @@ if __name__ == "__main__":
     }
 
     # Run the program on a specific Excel file
-    file_path = "Routesd.xlsx"
+    file_path = "Usersd.xlsx"
     col_map()
     process_excel(file_path, col_info)
