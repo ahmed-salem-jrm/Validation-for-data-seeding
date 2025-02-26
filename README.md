@@ -1,4 +1,5 @@
-create_connection()
+# create_connection()
+
 This function establishes a connection to a PostgreSQL database and returns the connection object and cursor for executing queries. If the connection fails, it handles the error and returns None.
 
 
