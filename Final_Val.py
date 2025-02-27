@@ -4,9 +4,9 @@ def create_connection():
     try:
         connection = psycopg2.connect(
             host="localhost",       # Server address
-            dbname="2-16MD",        # Database name
+            dbname="database_name",        # Database name
             user="postgres",        # Username
-            password="Pa$$w0rdahmed1996"  # Password
+            password="your_password"  # Password
         )
         cursor = connection.cursor()
         return connection, cursor
@@ -164,13 +164,13 @@ def validate_excel(col_info, df_sheet, sheet_name):
 def compare_specific_column(sheet_column, db_column, table_name , label, df_sheet, sheet_name , cursor):
     if label == 1:
         sheet_unique_values = set(df_sheet[sheet_column].apply(str).dropna().unique())
-        
+        # print(sheet_unique_values)
         query = f'SELECT DISTINCT "{db_column}" FROM public."{table_name}"'
         cursor.execute(query)
         db_values = set([str(row[0]) for row in cursor.fetchall()])
     
         values_in_sheet_not_in_db = sheet_unique_values - db_values
-    
+
         if values_in_sheet_not_in_db:
             print(f"❌ Values {list(values_in_sheet_not_in_db)} found in column '{sheet_column}' in Sheet '{sheet_name}' but not in database.")
             # sys.exit(f"Error: Some values in '{sheet_column}' do not exist in the database. Please fix and try again.")
@@ -208,7 +208,8 @@ def check_values_in_db(excel_file, cursor, relation):
     return 
 
 ################################################################################################
-def compare_segments(cursor, route_code, user_code):
+def compare_segments(cursor, route_code, code , label):
+
     # First query: Get SegmentId from Routes based on the Code
     query1 = """
         SELECT "SegmentId"
@@ -220,25 +221,41 @@ def compare_segments(cursor, route_code, user_code):
 
     if segment_id_route is None:
         return False  # If no value is found, return False
+    if label == 0 :
+                # Second query: Get SegmentId from SalesmanTypes based on the SalesmanTypeId from Users
+            query2 = """
+                SELECT "SegmentId"
+                FROM public."SalesmanTypes"
+                WHERE "Id" IN (
+                    SELECT "SalesmanTypeId"
+                    FROM public."Users"
+                    WHERE "Code" = %s
+                );
+            """
+            cursor.execute(query2, (code,))
+            segment_id_salesman_type = cursor.fetchone()
 
-    # Second query: Get SegmentId from SalesmanTypes based on the SalesmanTypeId from Users
-    query2 = """
-        SELECT "SegmentId"
-        FROM public."SalesmanTypes"
-        WHERE "Id" IN (
-            SELECT "SalesmanTypeId"
-            FROM public."Users"
-            WHERE "Code" = %s
-        );
-    """
-    cursor.execute(query2, (user_code,))
-    segment_id_salesman_type = cursor.fetchone()
+            if segment_id_salesman_type is None:
+                return False  # If no value is found, return False
 
-    if segment_id_salesman_type is None:
-        return False  # If no value is found, return False
+            # Compare the two values
+            return segment_id_route[0] == segment_id_salesman_type[0]
+    else:
+     # Second query: Get SegmentId from SalesmanTypes based on the SalesmanTypeId from Users
+            query2 = """
+                    select "SegmentId" from public."Channels" where "Id" in 
+                        (select "ChannelId" from public."SubChannels" where "Id" in 
+                            (select "SubChannelId" from public."Chains" where "Id" in 
+                                (Select "ChainId" from public."Stores" where "Code" = %s) ));
+                    """
+            cursor.execute(query2, (code,))
+            segment_id_Store_type = cursor.fetchone()
 
-    # Compare the two values
-    return segment_id_route[0] == segment_id_salesman_type[0]
+            if segment_id_Store_type is None:
+                return False  # If no value is found, return False
+
+            # Compare the two values
+            return segment_id_route[0] == segment_id_Store_type[0]
 
 ###############################################################################################
 def process_excel(file_path, col_info):
@@ -249,7 +266,7 @@ def process_excel(file_path, col_info):
             print("Unable to connect to the database.....")
             return
         # Read the Excel file
-        data = pd.read_excel(file_path, sheet_name=None)
+        data = pd.read_excel(file_path, sheet_name=None , dtype=str)
         
         for sheet_name in data.keys():
             df_sheet = data.get(sheet_name)
@@ -275,9 +292,25 @@ def process_excel(file_path, col_info):
                                 route_code = str(row['Route Id'])
                                 user_code = str(row['Username'])
                                 # Call compare_segments function with the extracted route_code and user_code
-                                is_equal = compare_segments(cursor, route_code, user_code)
+                                is_equal = compare_segments(cursor, route_code, user_code , label = 0 )
                                 if is_equal == False:
                                     differ_seg.append({"index":index ,  "route_code":route_code, "user_code":user_code  })
+                            if differ_seg :
+                                print("there are different segments:" ,differ_seg)
+                            else:
+                                print("Same segment")
+                    # Segment of routes and Stores
+                    if sheet_name== "Routes - Stores":
+                        if 'Route Id' in df_sheet.columns and 'Store Number' in df_sheet.columns:
+                            # df_sheet["Username"] = df_sheet["Username"].str.split("@" , expand = True)[0]
+                            differ_seg = []
+                            for index, row in df_sheet.iterrows():
+                                route_code = str(row['Route Id'])
+                                store_code = str(row['Store Number'])
+                                # Call compare_segments function with the extracted route_code and user_code
+                                is_equal = compare_segments(cursor, route_code, store_code , label = 1)
+                                if is_equal == False:
+                                    differ_seg.append({"index":index ,  "route_code":route_code, "store_code":store_code  })
                             if differ_seg :
                                 print("there are different segments:" ,differ_seg)
                             else:
@@ -311,6 +344,6 @@ if __name__ == "__main__":
     }
 
     # Run the program on a specific Excel file
-    file_path = "Usersd.xlsx"
+    file_path = "Routes.xlsx"
     col_map()
     process_excel(file_path, col_info)
