@@ -47,16 +47,19 @@ The function helps ensure that the data in the Excel file matches the database v
 
 # compare_segments(cursor, route_code, user_code)
 
-This function compare_segments checks whether the SegmentId from the Routes table matches the SegmentId related to the SalesmanType of a specific user. Here's a step-by-step explanation of how it works:
-1.	Get SegmentId from Routes:
-o	It first runs a query to fetch the SegmentId from the Routes table where the Code matches the provided route_code.
-o	If no result is returned, the function immediately returns False.
-2.	Get SegmentId from SalesmanTypes:
-o	It then runs a second query to fetch the SegmentId from the SalesmanTypes table. This is based on the SalesmanTypeId associated with the user_code from the Users table.
-o	If no result is returned, the function returns False.
-3.	Comparison:
-o	Finally, the function compares the two SegmentId values: one from the Routes table and one from the SalesmanTypes table. If they are equal, it returns True; otherwise, it returns False.
-In summary, this function ensures that the segment of a user (determined by their SalesmanType) matches the segment of the route associated with the given route code.
+This function compare_segments compares segment IDs from two different sources based on the given route_code and code, which could either be a user code or a store code. Here's how it works:
+1.	First Query (Route Segment Comparison):
+o	The function first retrieves the SegmentId from the Routes table based on the provided route_code.
+2.	If label == 0 (User Code Comparison):
+o	If the label is 0, it queries the SalesmanTypes and Users tables to get the SegmentId associated with the given code (which is a user code).
+o	It compares the SegmentId from the Routes table with the SegmentId from the SalesmanTypes table for the user.
+o	If they match, it returns True, meaning the segments are the same. If not, it returns False.
+3.	If label != 0 (Store Code Comparison):
+o	If the label is not 0 (which likely indicates a store), it queries the Channels, SubChannels, Chains, and Stores tables to get the SegmentId associated with the given code (which is a store code).
+o	It compares the SegmentId from the Routes table with the SegmentId from the Stores and related tables.
+o	If they match, it returns True, meaning the segments are the same. If not, it returns False.
+In summary, the function checks if the segment IDs from the Routes table match either the user segment ID or the store segment ID, depending on the label value.
+
 
 # process_excel(file_path, col_info)
 
