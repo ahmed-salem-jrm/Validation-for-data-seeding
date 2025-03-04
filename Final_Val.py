@@ -8,9 +8,9 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 
 # Use environment variables to avoid storing the password in the code
 DB_CONFIG = {
-    "dbname": os.getenv("DB_NAME", "DB_Name"),
+    "dbname": os.getenv("DB_NAME", "2-16MD"),
     "user": os.getenv("DB_USER", "postgres"),
-    "password": os.getenv("DB_PASS", "your_password"),  # ⚠️ Store it in an environment variable instead of the code
+    "password": os.getenv("DB_PASS", "Pa$$w0rdahmed1996"),  # ⚠️ Store it in an environment variable instead of the code
     "host": os.getenv("DB_HOST", "localhost"),
     "port": os.getenv("DB_PORT", "5432"),
 }
@@ -37,50 +37,50 @@ def close_connection(connection, cursor):
 def col_map():
     col_info = {
             "Stores": [
-                {"DataFrameColumn": "Store Code", "DatabaseColumn": "Code", "Table": "Stores" , "label":1},
-                {"DataFrameColumn": "Store Name", "DatabaseColumn": "EnName", "Table": "Stores" , "label":0},
-                {"DataFrameColumn": "Region", "DatabaseColumn": "EnName", "Table": "Regions" , "label":1},
-                {"DataFrameColumn": "Branch", "DatabaseColumn": "EnName", "Table": "Branches" , "label":1},
-                {"DataFrameColumn": "Site", "DatabaseColumn": "EnName", "Table": "Sites" , "label":1},
-                {"DataFrameColumn": "Channel", "DatabaseColumn": "EnName", "Table": "Channels" , "label":1},
-                {"DataFrameColumn": "Sub Channel", "DatabaseColumn": "EnName", "Table": "SubChannels" , "label":1},
-                {"DataFrameColumn": "SR Code", "DatabaseColumn": "Code", "Table": "Users" , "label":0},
-                {"DataFrameColumn": "Chain", "DatabaseColumn": "EnName", "Table": "Chains" , "label":1},
-                {"DataFrameColumn": "Area Code", "DatabaseColumn": "Code", "Table": "Areas" , "label":0},
-                {"DataFrameColumn": "RE Segmantation", "DatabaseColumn": "Name", "Table": "RESegmantations" , "label":1},
-                {"DataFrameColumn": "Sub RE Segmantation", "DatabaseColumn": "Name", "Table": "SubReSegmentations" , "label":1},
-                {"DataFrameColumn": "Longitude", "DatabaseColumn": "Longitude", "Table": "Stores" , "label":0},
-                {"DataFrameColumn": "Latitude", "DatabaseColumn": "Latitude", "Table": "Stores" , "label":0},
-                {"DataFrameColumn": "Tiers", "DatabaseColumn": "Tier", "Table": "Stores" , "label":1},
-                {"DataFrameColumn": "DC/SD", "DatabaseColumn": "SD_DC", "Table": "Stores" , "label":1},
-                {"DataFrameColumn": "Sales office ID", "DatabaseColumn": "Code", "Table": "SalesOffices" , "label":1},
-                {"DataFrameColumn": "Address", "DatabaseColumn": "Address", "Table": "Stores" ,  "label":0},
-                {"DataFrameColumn": "Frequency", "DatabaseColumn": "Frequency", "Table": "Stores" ,  "label":0},
-                {"DataFrameColumn": "Day", "DatabaseColumn": "Day", "Table": "Stores" ,  "label":0},
-                {"DataFrameColumn": "Day Dry", "DatabaseColumn": "DayDry", "Table": "Stores" ,  "label":0},
+                {"DataFrameColumn": "Store Code", "DatabaseColumn": "Code", "Table": "Stores" , "checkwDB":1},
+                {"DataFrameColumn": "Store Name", "DatabaseColumn": "EnName", "Table": "Stores" , "checkwDB":0},
+                {"DataFrameColumn": "Region", "DatabaseColumn": "EnName", "Table": "Regions" , "checkwDB":1},
+                {"DataFrameColumn": "Branch", "DatabaseColumn": "EnName", "Table": "Branches" , "checkwDB":1},
+                {"DataFrameColumn": "Site", "DatabaseColumn": "EnName", "Table": "Sites" , "checkwDB":1},
+                {"DataFrameColumn": "Channel", "DatabaseColumn": "EnName", "Table": "Channels" , "checkwDB":1},
+                {"DataFrameColumn": "Sub Channel", "DatabaseColumn": "EnName", "Table": "SubChannels" , "checkwDB":1},
+                {"DataFrameColumn": "SR Code", "DatabaseColumn": "Code", "Table": "Users" , "checkwDB":0},
+                {"DataFrameColumn": "Chain", "DatabaseColumn": "EnName", "Table": "Chains" , "checkwDB":1},
+                {"DataFrameColumn": "Area Code", "DatabaseColumn": "Code", "Table": "Areas" , "checkwDB":0},
+                {"DataFrameColumn": "RE Segmantation", "DatabaseColumn": "Name", "Table": "RESegmantations" , "checkwDB":1},
+                {"DataFrameColumn": "Sub RE Segmantation", "DatabaseColumn": "Name", "Table": "SubReSegmentations" , "checkwDB":1},
+                {"DataFrameColumn": "Longitude", "DatabaseColumn": "Longitude", "Table": "Stores" , "checkwDB":0},
+                {"DataFrameColumn": "Latitude", "DatabaseColumn": "Latitude", "Table": "Stores" , "checkwDB":0},
+                {"DataFrameColumn": "Tiers", "DatabaseColumn": "Tier", "Table": "Stores" , "checkwDB":1},
+                {"DataFrameColumn": "DC/SD", "DatabaseColumn": "SD_DC", "Table": "Stores" , "checkwDB":1},
+                {"DataFrameColumn": "Sales office ID", "DatabaseColumn": "Code", "Table": "SalesOffices" , "checkwDB":1},
+                {"DataFrameColumn": "Address", "DatabaseColumn": "Address", "Table": "Stores" ,  "checkwDB":0},
+                {"DataFrameColumn": "Frequency", "DatabaseColumn": "Frequency", "Table": "Stores" ,  "checkwDB":0},
+                {"DataFrameColumn": "Day", "DatabaseColumn": "Day", "Table": "Stores" ,  "checkwDB":0},
+                {"DataFrameColumn": "Day Dry", "DatabaseColumn": "DayDry", "Table": "Stores" ,  "checkwDB":0},
                 
             ],
             "Users": [
-                {"DataFrameColumn": "UserName", "DatabaseColumn": "UserName", "Table": "Users" , "label":1},
-                {"DataFrameColumn": "First Name", "DatabaseColumn": "FirstName", "Table": "Users" , "label":0},
-                {"DataFrameColumn": "Last Name", "DatabaseColumn": "LastName", "Table": "Users" , "label":0},
-                {"DataFrameColumn": "Default Role", "DatabaseColumn": "Description", "Table": "SalesmanTypes" , "label":1},
-                {"DataFrameColumn": "Reset Password", "DatabaseColumn": "Password", "Table": "Users" , "label":0},
-                {"DataFrameColumn": "Sales Man Type", "DatabaseColumn": "Name", "Table": "SalesmanTypes" , "label":1},
+                {"DataFrameColumn": "UserName", "DatabaseColumn": "UserName", "Table": "Users" , "checkwDB":1},
+                {"DataFrameColumn": "First Name", "DatabaseColumn": "FirstName", "Table": "Users" , "checkwDB":0},
+                {"DataFrameColumn": "Last Name", "DatabaseColumn": "LastName", "Table": "Users" , "checkwDB":0},
+                {"DataFrameColumn": "Default Role", "DatabaseColumn": "Description", "Table": "SalesmanTypes" , "checkwDB":1},
+                {"DataFrameColumn": "Reset Password", "DatabaseColumn": "Password", "Table": "Users" , "checkwDB":0},
+                {"DataFrameColumn": "Sales Man Type", "DatabaseColumn": "Name", "Table": "SalesmanTypes" , "checkwDB":1},
         
             ],
             "Routes": [
-                {"DataFrameColumn": "Route Id", "DatabaseColumn": "Code", "Table": "Routes" , "label":1},
-                {"DataFrameColumn": "Route Name", "DatabaseColumn": "Name", "Table": "Routes" , "label":1},
-                {"DataFrameColumn": "Route Type", "DatabaseColumn": "Type", "Table": "Routes" , "label":1},
+                {"DataFrameColumn": "Route Id", "DatabaseColumn": "Code", "Table": "Routes" , "checkwDB":1},
+                {"DataFrameColumn": "Route Name", "DatabaseColumn": "Name", "Table": "Routes" , "checkwDB":1},
+                {"DataFrameColumn": "Route Type", "DatabaseColumn": "Type", "Table": "Routes" , "checkwDB":1},
             ],
             "Routes - Stores": [
-                {"DataFrameColumn": "Route Id", "DatabaseColumn": "Code", "Table": "Routes" , "label":1},
-                {"DataFrameColumn": "Store Number", "DatabaseColumn": "Code", "Table": "Stores" , "label":1}
+                {"DataFrameColumn": "Route Id", "DatabaseColumn": "Code", "Table": "Routes" , "checkwDB":1},
+                {"DataFrameColumn": "Store Number", "DatabaseColumn": "Code", "Table": "Stores" , "checkwDB":1}
             ],
             "Routes - Users": [
-                {"DataFrameColumn": "Route Id", "DatabaseColumn": "Code", "Table": "Routes" , "label":1},
-                {"DataFrameColumn": "Username", "DatabaseColumn": "UserName", "Table": "Users" , "label":1}
+                {"DataFrameColumn": "Route Id", "DatabaseColumn": "Code", "Table": "Routes" , "checkwDB":1},
+                {"DataFrameColumn": "Username", "DatabaseColumn": "UserName", "Table": "Users" , "checkwDB":1}
             ]}
 
     # Define relationship mapping here without using global variables
@@ -160,8 +160,12 @@ def validate_excel(col_info, df_sheet, sheet_name):
     logging.info(f"✅ Sheet '{sheet_name}' validated successfully.")
     return True
 
-def compare_specific_column(sheet_column, db_column, table_name, label, df_sheet, sheet_name, cursor):
-    if label == 1:
+def compare_specific_column(sheet_column, db_column, table_name, checkwDB, df_sheet, sheet_name, cursor):
+    if sheet_name == 'Routes - Users':
+        df_sheet["Username"] = df_sheet["Username"].str.split("@", expand=True)[0]
+
+    if checkwDB == 1:
+        
         sheet_unique_values = set(df_sheet[sheet_column].dropna().apply(str).str.strip().str.lower().unique())
 
         query = f'SELECT DISTINCT LOWER("{db_column}") FROM public."{table_name}"'
@@ -176,7 +180,7 @@ def compare_specific_column(sheet_column, db_column, table_name, label, df_sheet
 
     return True  # No errors found
 
-def compare_segments(cursor, route_code, code, label):
+def compare_segments(cursor, route_code, code, user_or_store):
 
     try:
         query1 = """
@@ -191,7 +195,7 @@ def compare_segments(cursor, route_code, code, label):
         if segment_id_route is None:
             return False  # No value found
 
-        if label == 0:
+        if user_or_store == 0:
             query2 = """
                 SELECT "SegmentId"
                 FROM public."SalesmanTypes"
@@ -267,10 +271,10 @@ def get_segments(cursor):
 
     return segments
 
-def compare_segments_optimized(route_code, code, label, segments):
+def compare_segments_optimized(route_code, code, user_or_store, segments):
     """ Compare SegmentIds using pre-fetched data instead of running a query each time. """
     segment_id_route = segments["routes"].get(route_code)
-    segment_id_comparison = segments["users"].get(code) if label == 0 else segments["stores"].get(code)
+    segment_id_comparison = segments["users"].get(code) if user_or_store == 0 else segments["stores"].get(code)
 
     if segment_id_route is None or segment_id_comparison is None:
         return False
@@ -278,34 +282,69 @@ def compare_segments_optimized(route_code, code, label, segments):
     return segment_id_route == segment_id_comparison
 
 
-def check_values_in_db(excel_file, cursor, relation):
-    # Read the Excel file into a DataFrame with the provided columns
+
+
+
+
+def check_values_in_db(excel_file, cursor, relation, batch_size=10000):
+    # Load the Excel file into a DataFrame
     df = pd.read_excel(excel_file, usecols=[relation["column1"], relation["column2"]])
 
-    # Dynamically construct the query to join tables based on the provided columns
+    excel_dict = {(str(row[relation["column1"]]), str(row[relation["column2"]])) for _, row in df.iterrows()}
+
     query = f"""
-    SELECT R."{relation["column1_db"]}" as "col1", B."{relation["column2_db"]}" as "col2" 
+    SELECT R."{relation["column1_db"]}", B."{relation["column2_db"]}"
     FROM public."{relation["table1"]}" R
     JOIN public."{relation["table2"]}" B ON R."{relation["key_t1"]}" = B."{relation["key_t2"]}"
     """
-    # Execute the query
+
     cursor.execute(query)
-    # print(query)
-    # Fetch the results from the JOIN
-    join_results = cursor.fetchall()
 
-    join_set = set(join_results)
+    db_dict = set()
+    
+    while True:
+        batch = cursor.fetchmany(batch_size)
+        if not batch:
+            break  
 
-    for index, row in df.iterrows():
-        value1 = str(row[relation["column1"]])
-        value2 = str(row[relation["column2"]])
-        # print(index)
-        
-        if (str(value1), str(value2)) not in join_set:
-            # differences.append((index ,relation["column1"] , relation["column2"] ,   value1, value2 ))
-            print(f"Row {index}: In column {relation['column1']}, {relation['column2']} - The values {value1}, {value2} do not relate!.")
-  
+        db_dict.update((str(row[0]), str(row[1])) for row in batch)
+
+    differences = excel_dict - db_dict
+
+    for index, (value1, value2) in enumerate(differences):
+        print(f"Row {index}: In column {relation['column1']}, {relation['column2']} - The values {value1}, {value2} do not relate!")
+
     return
+
+
+# def check_values_in_db(excel_file, cursor, relation):
+#     # Read the Excel file into a DataFrame with the provided columns
+#     df = pd.read_excel(excel_file, usecols=[relation["column1"], relation["column2"]])
+
+#     # Dynamically construct the query to join tables based on the provided columns
+#     query = f"""
+#     SELECT R."{relation["column1_db"]}" as "col1", B."{relation["column2_db"]}" as "col2" 
+#     FROM public."{relation["table1"]}" R
+#     JOIN public."{relation["table2"]}" B ON R."{relation["key_t1"]}" = B."{relation["key_t2"]}"
+#     """
+#     # Execute the query
+#     cursor.execute(query)
+#     # print(query)
+#     # Fetch the results from the JOIN
+#     join_results = cursor.fetchall()
+
+#     join_set = set(join_results)
+
+#     for index, row in df.iterrows():
+#         value1 = str(row[relation["column1"]])
+#         value2 = str(row[relation["column2"]])
+#         # print(index)
+        
+#         if (str(value1), str(value2)) not in join_set:
+#             # differences.append((index ,relation["column1"] , relation["column2"] ,   value1, value2 ))
+#             print(f"Row {index}: In column {relation['column1']}, {relation['column2']} - The values {value1}, {value2} do not relate!.")
+  
+#     return
 
 def save_differences_to_excel(differences, filename="differences.xlsx"):
     """ Save the list of dictionaries to an Excel file """
@@ -333,9 +372,9 @@ def process_excel(file_path, col_info):
 
             tables_columns = col_info.get(sheet_name, [])
             for row in tables_columns:
-                compare_specific_column(row["DataFrameColumn"], row["DatabaseColumn"], row["Table"], row["label"], df_sheet, sheet_name, cursor)
+                compare_specific_column(row["DataFrameColumn"], row["DatabaseColumn"], row["Table"], row["checkwDB"], df_sheet, sheet_name, cursor)
             
-            all_differences = []
+            # all_differences = []
 
             if sheet_name == "Routes - Users":
                 if 'Route Id' in df_sheet.columns and 'Username' in df_sheet.columns:
@@ -348,7 +387,7 @@ def process_excel(file_path, col_info):
                         route_code = str(row['Route Id'])
                         user_code = str(row['Username'])
 
-                        is_equal = compare_segments_optimized(route_code, user_code, label=0, segments=segments)
+                        is_equal = compare_segments_optimized(route_code, user_code, user_or_store=0, segments=segments)
                         if not is_equal:
                             differ_seg.append({"Index": index, "Route Code": route_code, "User Code": user_code})
  
@@ -363,13 +402,13 @@ def process_excel(file_path, col_info):
                         route_code = str(row['Route Id'])
                         store_code = str(row['Store Number'])
 
-                        is_equal = compare_segments_optimized(route_code, store_code, label=1, segments=segments)
+                        is_equal = compare_segments_optimized(route_code, store_code, user_or_store=1, segments=segments)
                         if not is_equal:
                             differ_seg.append({ "Index": index, "Route Code": route_code, "Store Code": store_code})
 
                     save_differences_to_excel(differ_seg, f"segment_differences_{sheet_name}.xlsx")
                         
-            
+            # print("test")
             # Finally, compare the data between the Excel sheet and the database
             if sheet_name == "Stores":
                 for relation_item in relation["Stores"]:
@@ -384,6 +423,6 @@ def process_excel(file_path, col_info):
 
 # Execute the program
 if __name__ == "__main__":
-    file_path = "Usersd.xlsx"
+    file_path = "Routes Feb'2025.xlsx"
     col_info, relation = col_map()
     process_excel(file_path, col_info)
